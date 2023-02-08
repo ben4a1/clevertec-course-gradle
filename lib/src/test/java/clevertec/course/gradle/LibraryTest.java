@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class LibraryTest {
     @Test public void someLibraryMethodReturnsTrue() {
-        Library classUnderTest = new Library();
-        assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
+        StringUtils classUnderTest = new StringUtils();
+        assertTrue("someLibraryMethod should return 'true'", classUnderTest.isPositiveNumber(String.valueOf(1)));
     }
 }
