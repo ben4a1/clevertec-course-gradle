@@ -5,3 +5,11 @@
 build
 
 .idea
+
+*.class
+
+bin/
+gen/
+build/
+
+.gitignore
