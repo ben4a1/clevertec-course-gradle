@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'jacoco'
 }
 
 java {
@@ -44,3 +45,6 @@ tasks.named('jar') {
 test {
     useJUnitPlatform()
 }
+
+test.finalizedBy(jacocoTestReport)
+jacocoTestReport.dependsOn test
