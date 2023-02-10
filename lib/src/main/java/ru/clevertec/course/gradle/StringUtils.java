@@ -5,7 +5,6 @@ package ru.clevertec.course.gradle;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 public class StringUtils {
     static public boolean isPositiveNumber(String str) {
