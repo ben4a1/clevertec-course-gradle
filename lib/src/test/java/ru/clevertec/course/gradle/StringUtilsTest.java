@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 
@@ -17,7 +16,7 @@ class StringUtilsTest {
     static String notNumber = "one hundred thousand five hundred";
 
     @Test
-    void isPositiveNumber() {
+    void isPositiveNumberTest() {
         Assertions.assertTrue(StringUtils.isPositiveNumber(String.valueOf(positiveNumber)));
         Assertions.assertTrue(StringUtils.isPositiveNumber(String.valueOf(positiveFloatNumber)));
         Assertions.assertFalse(StringUtils.isPositiveNumber(notNumber));
