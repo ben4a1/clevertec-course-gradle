@@ -1,11 +1,32 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
 }
+
+java {
+    withJavadocJar()
+}
+
 group 'ru.clevertec'
 version '1.3.5'
 
 repositories {
     mavenCentral()
+}
+
+publishing {
+    publications {
+        myLibrary(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'myRepo'
+            url = layout.buildDirectory.dir("repo")
+        }
+    }
 }
 
 dependencies {
@@ -18,6 +39,14 @@ dependencies {
     implementation 'com.google.guava:guava:31.0.1-jre'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 }
+
+tasks.named('jar') {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                    'Implementation-Version': project.version)
+    }
+}
+
 test {
     useJUnitPlatform()
 }
