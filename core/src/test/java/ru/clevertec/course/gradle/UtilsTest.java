@@ -11,6 +11,5 @@ class UtilsTest {
     void isAllPositiveNumbersTest() {
         Assertions.assertTrue(isAllPositiveNumbers("2", "15"));
         Assertions.assertFalse(isAllPositiveNumbers("11", "six"));
-
     }
 }
