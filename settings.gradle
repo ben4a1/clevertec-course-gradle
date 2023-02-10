@@ -1,2 +1,3 @@
 rootProject.name = 'clevertec-course-gradle'
-include 'lib'
+include 'lib', 'core', 'api'
+
