@@ -1,12 +1,38 @@
+import java.nio.file.Files
 
-class TestPlugin implements Plugin<Project> {
+interface TestPluginExtension {
+    Property<String> getMessage()
+}
+
+class TestToFilePlugin implements Plugin<Project> {
     void apply(Project project) {
-        project.task('hello') {
+        def extension = project.extensions.create('greeting', TestPluginExtension)
+        extension.message.convention('Hello from TestToFilePlugin')
+
+        project.task(type: Copy, 'customTest') {
+            println 'from customTest'
+            println project.rootDir
+            println project.buildDir
+            from ('build/reports/jacoco/test/html/')
+            into project.rootDir
+            include 'index.html'
             doLast {
-                println 'from TestPlugin doLast'
+                println 'copy index.html'
             }
         }
+
+        project.task('hello') {
+            doLast {
+                println extension.message.get()
+            }
+        }
+
     }
 }
 
-apply plugin: TestPlugin
+apply plugin: TestToFilePlugin
+
+hello.dependsOn('test')
+customTest.dependsOn('test')
+
+greeting.message = 'ky'
