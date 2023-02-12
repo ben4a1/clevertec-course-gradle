@@ -17,9 +17,6 @@ repositories {
 
 publishing {
     publications {
-        pluginPublication(MavenPublication) {
-            from components.java
-        }
         mavenJava(MavenPublication) {
             from components.java
         }
@@ -46,29 +43,11 @@ tasks.named('jar') {
     }
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-        mavenLocal()
-    }
-    dependencies {
-        classpath 'ru.clevertec.by.paramonov:1.3.5'
-    }
-}
-
-apply plugin : CustomPlugin.groovy
-abstract class HelloTask extends DefaultTask {
-    @TaskAction
-    def printHello() {
-        println("Hello Asia!")
-    }
-}
-
-tasks.register('hello', HelloTask)
-
 test {
     useJUnitPlatform()
 }
+
+apply from: 'script.gradle'
 
 test.finalizedBy(jacocoTestReport)
 jacocoTestReport.dependsOn test
